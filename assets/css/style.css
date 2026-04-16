@@ -744,33 +744,44 @@ body.auth-signup {
 }
 
 body.auth-signup .login-scene {
-    align-items: start;
-    min-height: auto;
-    padding: 1rem 0;
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(380px, 560px);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+    min-height: calc(100svh - 1.5rem);
+    padding: 0.75rem 0;
+}
+
+body.auth-signup .login-showcase {
+    max-width: 520px;
 }
 
 body.auth-signup .login-wrapper {
-    max-width: 460px;
+    width: 100%;
+    max-width: 560px;
+    margin: 0;
 }
 
 body.auth-signup .login-header {
-    padding-bottom: 0.35rem;
+    padding-bottom: 0.25rem;
 }
 
 body.auth-signup .login-body {
-    padding-top: 0.85rem;
+    padding-top: 0.6rem;
 }
 
 body.auth-signup #signupForm {
     display: grid;
-    gap: 0.75rem;
+    gap: 0.85rem;
 }
 
 body.auth-signup .signup-grid,
 body.auth-signup .signup-password-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.75rem 0.85rem;
+    gap: 0.75rem 1rem;
     align-items: start;
 }
 
@@ -798,7 +809,7 @@ body.auth-signup .form-group .optional {
 }
 
 body.auth-signup .login-tip {
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.75rem;
 }
 
 @media (max-width: 900px) {
