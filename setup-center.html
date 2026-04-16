@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Homes - Setup & Documentation Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .status-banner {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-banner::before {
+            content: "✓";
+            font-size: 1.5em;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #333;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card.primary {
+            border-left-color: #2196F3;
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        .card.success {
+            border-left-color: #4CAF50;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        .card.warning {
+            border-left-color: #FF9800;
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        .card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .card ul li {
+            padding: 8px 0;
+            color: #666;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .card ul li::before {
+            content: "▪ ";
+            color: #2196F3;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            border: 2px solid #333;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: white;
+            color: #333;
+        }
+
+        .btn.primary {
+            background: #2196F3;
+            border-color: #2196F3;
+        }
+
+        .btn.primary:hover {
+            background: white;
+            color: #2196F3;
+        }
+
+        .btn.success {
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }
+
+        .btn.success:hover {
+            background: white;
+            color: #4CAF50;
+        }
+
+        .quick-start {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-top: 4px solid #2196F3;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .quick-start h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .step {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+            border-left: 4px solid #2196F3;
+        }
+
+        .step h4 {
+            color: #2196F3;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: #2196F3;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step p {
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .doc-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 3px solid #666;
+            transition: all 0.2s;
+        }
+
+        .doc-item:hover {
+            background: #f0f0f0;
+            border-left-color: #2196F3;
+            transform: translateX(4px);
+        }
+
+        .doc-item a {
+            color: #2196F3;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .doc-item a:hover {
+            text-decoration: underline;
+        }
+
+        .doc-icon {
+            font-size: 1.3em;
+        }
+
+        .doc-description {
+            font-size: 0.9em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .encryption-flow {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+            font-family: monospace;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .encryption-flow code {
+            color: #333;
+            white-space: pre;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 Elite Homes Real Estate Portal</h1>
+            <p>Complete Setup & Documentation Center</p>
+        </header>
+
+        <div class="status-banner">
+            System Ready - Database with Cipher Encryption Enabled
+        </div>
+
+        <div class="quick-start">
+            <h2>🚀 Quick Start (3 Steps)</h2>
+            <div class="steps">
+                <div class="step">
+                    <h4><span class="step-number">1</span> Start MySQL</h4>
+                    <p>Open XAMPP Control Panel and start MySQL server.</p>
+                </div>
+                <div class="step">
+                    <h4><span class="step-number">2</span> Initialize Database</h4>
+                    <p><a href="setup-database.php" class="btn success">Run Setup Script</a></p>
+                </div>
+                <div class="step">
+                    <h4><span class="step-number">3</span> Test System</h4>
+                    <p><a href="login.php" class="btn primary">Go to Login</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card primary">
+                <h3>📖 Documentation</h3>
+                <p>Comprehensive guides and references for setup and usage.</p>
+                <div class="docs-grid">
+                    <div class="doc-item">
+                        <a href="QUICK_START.md" target="_blank">
+                            <span class="doc-icon">⚡</span>
+                            Quick Start
+                        </a>
+                        <div class="doc-description">Overview & visual reference</div>
+                    </div>
+                    <div class="doc-item">
+                        <a href="SETUP_CHECKLIST.md" target="_blank">
+                            <span class="doc-icon">✅</span>
+                            Setup Checklist
+                        </a>
+                        <div class="doc-description">Step-by-step verification</div>
+                    </div>
+                    <div class="doc-item">
+                        <a href="DATABASE_ENCRYPTION_GUIDE.md" target="_blank">
+                            <span class="doc-icon">🔐</span>
+                            Encryption Guide
+                        </a>
+                        <div class="doc-description">Detailed technical reference</div>
+                    </div>
+                    <div class="doc-item">
+                        <a href="COMPLETE_SETUP_SUMMARY.md" target="_blank">
+                            <span class="doc-icon">📋</span>
+                            Complete Summary
+                        </a>
+                        <div class="doc-description">Full project summary</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card success">
+                <h3>✨ Features</h3>
+                <ul>
+                    <li>Custom cipher encryption for passwords</li>
+                    <li>Database storage with MySQL</li>
+                    <li>Three-state password toggle</li>
+                    <li>User authentication & authorization</li>
+                    <li>Property browsing & favorites</li>
+                    <li>Real estate images from Unsplash</li>
+                    <li>Animated black & white theme</li>
+                    <li>Responsive design</li>
+                </ul>
+            </div>
+
+            <div class="card warning">
+                <h3>🔐 Security</h3>
+                <ul>
+                    <li>Passwords encrypted before storage</li>
+                    <li>Custom substitution cipher</li>
+                    <li>Session-based authentication</li>
+                    <li>Database credentials configured</li>
+                    <li>Secure logout function</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🧪 Test Credentials</h3>
+            <p>After running setup-database.php, use these to test the system:</p>
+            <div class="encryption-flow">
+<code>Username: demo
+Password: password123
+
+Username: agent
+Password: password123
+
+Username: admin
+Password: password123</code>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>🛠️ Setup Pages</h3>
+                <p>Use these to initialize and test the system:</p>
+                <p style="margin-top: 20px;">
+                    <a href="setup-database.php" class="btn success" style="display: block; margin-bottom: 10px;">Initialize Database</a>
+                    <a href="login.php" class="btn primary" style="display: block; margin-bottom: 10px;">Login Page</a>
+                    <a href="signup.php" class="btn primary" style="display: block;">Sign Up Page</a>
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>📊 Key Files</h3>
+                <ul>
+                    <li><strong>setup-database.php</strong> - Initialize DB</li>
+                    <li><strong>includes/config.php</strong> - Configuration</li>
+                    <li><strong>includes/Cipher.php</strong> - Encryption</li>
+                    <li><strong>includes/User.php</strong> - Auth logic</li>
+                    <li><strong>api/auth.php</strong> - API endpoints</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>🔄 Database Info</h3>
+                <div class="encryption-flow">
+<code>Host: localhost
+User: root
+Password: (empty)
+Database: real_estate_db</code>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.9em; color: #666;">If root has a password, update includes/config.php</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>💡 How It Works</h3>
+            <p>When a user creates an account or logs in:</p>
+            <div class="encryption-flow">
+<code>User Input: password123
+      ↓
+Frontend: Stores plaintext
+      ↓
+Send to API: api/auth.php
+      ↓
+Backend: Cipher.encrypt(password)
+      ↓
+Database: Stores >=||_@(/JTA (encrypted)
+      ↓
+Login: Decrypt and verify
+      ↓
+Success: Create session</code>
+            </div>
+        </div>
+
+        <footer>
+            <p>🏠 Elite Homes - Real Estate Portal with Custom Cipher Encryption</p>
+            <p style="font-size: 0.9em; opacity: 0.8;">System Status: ✓ Ready for Initialization</p>
+        </footer>
+    </div>
+</body>
+</html>
